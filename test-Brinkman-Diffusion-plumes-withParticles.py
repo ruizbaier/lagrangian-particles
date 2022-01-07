@@ -143,9 +143,11 @@ while (time <= Tfinal):
         ph.rename("p","p"); fileO.write(ph,time)
         wh.rename("w","w"); fileO.write(wh,time)
 
-        ### HERE I don't know how to save the positions into Xdmf
+        ### HERE I don't know how to save the positions into the same Xdmf
+        points_list = list(Point(*pp) for pp in particle_positions)
         #lp.rename("part","part"); fileO.write(lp,time)
-        #XDMFFile(str(time)+"particles.xdmf").write(lp)
+        #fileO.write(points_list,time)
+        XDMFFile("outputs/particles"+str(inc)+".xdmf").write(points_list)
         
     inc += 1; time += dt
     
